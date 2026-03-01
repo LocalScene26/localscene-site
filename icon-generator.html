@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LocalScene Icon</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #333;
+    }
+    .icon {
+      width: 1024px;
+      height: 1024px;
+      background: linear-gradient(135deg, #0E0F13 0%, #1a1b21 100%);
+      border-radius: 224px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(110, 123, 255, 0.15) 0%, transparent 50%);
+    }
+    .logo-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 420px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -15px;
+      position: relative;
+      z-index: 1;
+    }
+    .logo-text span {
+      color: #6E7BFF;
+    }
+    .waves {
+      position: absolute;
+      bottom: 180px;
+      display: flex;
+      gap: 30px;
+      z-index: 1;
+    }
+    .wave {
+      width: 24px;
+      background: linear-gradient(to top, #6E7BFF, #A78BFA);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon">
+    <div class="logo-text">L<span>S</span></div>
+    <div class="waves">
+      <div class="wave" style="height: 80px;"></div>
+      <div class="wave" style="height: 140px;"></div>
+      <div class="wave" style="height: 200px;"></div>
+      <div class="wave" style="height: 160px;"></div>
+      <div class="wave" style="height: 100px;"></div>
+    </div>
+  </div>
+</body>
+</html>

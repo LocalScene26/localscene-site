@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LocalScene Splash</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #333;
+    }
+    .splash {
+      width: 1284px;
+      height: 2778px;
+      background: #050608;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .splash::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, rgba(110, 123, 255, 0.08) 0%, transparent 60%);
+    }
+    .logo {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 120px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -2px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 40px;
+    }
+    .logo span {
+      color: #6E7BFF;
+    }
+    .tagline {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 48px;
+      font-weight: 500;
+      color: #A78BFA;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <div class="logo">Local<span>Scene</span></div>
+    <div class="tagline">Build Your Scene</div>
+  </div>
+</body>
+</html>

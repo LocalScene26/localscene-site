@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalScene - Build Your Scene</title>
+  <meta name="description" content="Connect with local musicians, find gigs, and build your music scene. The networking app for artists.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #050608;
+      color: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #6E7BFF;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(110, 123, 255, 0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .logo span {
+      color: #6E7BFF;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #B8BCC7;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: #6E7BFF;
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: #5A67E8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(110, 123, 255, 0.1);
+      color: #6E7BFF;
+      border: 1px solid rgba(110, 123, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(110, 123, 255, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0;
+      text-align: center;
+      background: radial-gradient(ellipse at center top, rgba(110, 123, 255, 0.15) 0%, transparent 60%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px;
+      color: #F59E0B;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #6E7BFF 0%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #B8BCC7;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .phone-mockup {
+      max-width: 300px;
+      height: 600px;
+      background: linear-gradient(180deg, #0E0F13 0%, #1C1D22 100%);
+      border-radius: 40px;
+      border: 3px solid rgba(110, 123, 255, 0.3);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B7080;
+      font-size: 14px;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .section-title p {
+      color: #B8BCC7;
+      font-size: 18px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(110, 123, 255, 0.05);
+      border: 1px solid rgba(110, 123, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(110, 123, 255, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: #B8BCC7;
+      font-size: 15px;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 100px 0;
+      background: rgba(110, 123, 255, 0.02);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #6E7BFF 0%, #A78BFA 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 auto 20px;
+    }
+
+    .step h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      color: #B8BCC7;
+      font-size: 15px;
+    }
+
+    /* Waitlist Section */
+    .waitlist {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .waitlist-box {
+      max-width: 500px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(110, 123, 255, 0.1) 0%, rgba(110, 123, 255, 0.05) 100%);
+      border: 1px solid rgba(110, 123, 255, 0.2);
+      border-radius: 24px;
+      padding: 48px;
+    }
+
+    .waitlist-box h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .waitlist-box p {
+      color: #B8BCC7;
+      margin-bottom: 32px;
+    }
+
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .waitlist-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(110, 123, 255, 0.3);
+      background: rgba(0, 0, 0, 0.3);
+      color: #FFFFFF;
+      font-size: 15px;
+    }
+
+    .waitlist-form input::placeholder {
+      color: #6B7080;
+    }
+
+    .waitlist-form input:focus {
+      outline: none;
+      border-color: #6E7BFF;
+    }
+
+    .waitlist-form button {
+      padding: 14px 32px;
+    }
+
+    .success-message {
+      display: none;
+      color: #10B981;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* Pro Section */
+    .pro-section {
+      padding: 100px 0;
+    }
+
+    .pro-card {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 24px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .pro-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .pro-content h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #F59E0B;
+    }
+
+    .pro-content p {
+      color: #B8BCC7;
+      margin-bottom: 24px;
+    }
+
+    .pro-features {
+      list-style: none;
+    }
+
+    .pro-features li {
+      padding: 8px 0;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pro-features li::before {
+      content: "✓";
+      color: #F59E0B;
+      font-weight: 700;
+    }
+
+    .pro-price {
+      text-align: center;
+    }
+
+    .pro-price .amount {
+      font-size: 56px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .pro-price .period {
+      color: #B8BCC7;
+      font-size: 18px;
+    }
+
+    .pro-price .btn {
+      margin-top: 24px;
+      background: #F59E0B;
+      color: #000000;
+    }
+
+    .pro-price .btn:hover {
+      background: #D97706;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid rgba(110, 123, 255, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      color: #6B7080;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .copyright {
+      color: #6B7080;
+      font-size: 14px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .waitlist-form {
+        flex-direction: column;
+      }
+
+      .waitlist-form button {
+        width: 100%;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Local<span>Scene</span></div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pro">Pro</a>
+        <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+      </div>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🎸 Launching in Philadelphia - May 2026</div>
+      <h1>Build Your <span>Scene</span></h1>
+      <p>Connect with local musicians, find collaboration opportunities, and grow your music career. The networking app designed for artists, by artists.</p>
+      <div class="hero-buttons">
+        <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+      <div class="hero-image">
+        <div class="phone-mockup">
+          📱 App Preview Coming Soon
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Everything You Need</h2>
+        <p>Tools built specifically for local musicians</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Discover Artists</h3>
+          <p>Find musicians near you filtered by genre, instrument, and what they're looking for. Your next bandmate is around the corner.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Direct Messaging</h3>
+          <p>Connect instantly with other artists. Discuss collaborations, share ideas, and build relationships.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎤</div>
+          <h3>Gig Invites</h3>
+          <p>Send and receive gig invitations with all the details. Venue, date, compensation - all in one place.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📌</div>
+          <h3>Looking For Pins</h3>
+          <p>Let others know what you need - a drummer, vocalist, or venue. Get discovered by the right people.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎵</div>
+          <h3>Media Samples</h3>
+          <p>Showcase your sound with audio and video samples right on your profile. Let your music speak.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Analytics</h3>
+          <p>Track who's viewing your profile, measure engagement, and understand your reach in the scene.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-title">
+        <h2>How It Works</h2>
+        <p>Get started in minutes</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create Your Profile</h3>
+          <p>Add your genres, bio, media samples, and what you're looking for in collaborators.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Discover & Connect</h3>
+          <p>Browse local artists, filter by what matters, and reach out to potential collaborators.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Build Your Scene</h3>
+          <p>Message, collaborate, book gigs, and grow your network in the local music community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pro Section -->
+  <section class="pro-section" id="pro">
+    <div class="container">
+      <div class="pro-card">
+        <div class="pro-content">
+          <h2>⭐ LocalScene Pro</h2>
+          <p>Take your music career to the next level with premium features designed for serious artists.</p>
+          <ul class="pro-features">
+            <li>Unlimited messaging</li>
+            <li>Unlimited search radius</li>
+            <li>Profile analytics & insights</li>
+            <li>Streaming platform links</li>
+            <li>Social media integration</li>
+            <li>Spotlight eligibility</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+        <div class="pro-price">
+          <div class="amount">$9.99</div>
+          <div class="period">per month</div>
+          <a href="#waitlist" class="btn">Get Pro at Launch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist Section -->
+  <section class="waitlist" id="waitlist">
+    <div class="container">
+      <div class="waitlist-box">
+        <h2>🎸 Join the Waitlist</h2>
+        <p>Be the first to know when LocalScene launches in Philadelphia. Early signups get exclusive perks.</p>
+        <form class="waitlist-form" id="waitlist-form">
+          <input type="email" placeholder="Enter your email" required id="email-input">
+          <button type="submit" class="btn btn-primary">Join Waitlist</button>
+        </form>
+        <p class="success-message" id="success-message">🎉 You're on the list! We'll be in touch soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo">Local<span>Scene</span></div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pro">Pro</a>
+          <a href="mailto:hello@localscene.app">Contact</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+        <div class="copyright">© 2026 LocalScene. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Initialize Supabase
+    const supabaseUrl = 'https://gftvgppvravwmqmurent.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmdHZncHB2cmF2d21xbXVyZW50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMjU0MzUsImV4cCI6MjA4NTgwMTQzNX0.5rbJczeBuYKtSfGB-sqxSCPvYdLI8BYZq0yXmPP1TH0';
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+    // Waitlist form submission
+    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email-input').value;
+      const form = document.getElementById('waitlist-form');
+      const successMessage = document.getElementById('success-message');
+      const button = form.querySelector('button');
+      
+      button.textContent = 'Joining...';
+      button.disabled = true;
+      
+      try {
+        const { error } = await supabaseClient.from('waitlist').insert({ email });
+        
+        if (error && error.code === '23505') {
+          // Duplicate email
+          alert('You\'re already on the list! We\'ll be in touch soon.');
+          button.textContent = 'Join Waitlist';
+          button.disabled = false;
+          return;
+        }
+        
+        if (error) throw error;
+        
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again.');
+        button.textContent = 'Join Waitlist';
+        button.disabled = false;
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
